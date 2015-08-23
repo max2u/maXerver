@@ -17,13 +17,6 @@ public class HomeController {
 		context.addModelAttributes("title", "sameer is awesome!");
 		return "index";
 	}
-	
-
-    @RequestMapping("/files/${file_path}")
-	public String processRequest2(Context context){
-        return "files";
-    }
-    
     
     @RequestMapping("/resource/${file_path}")
     @FileResponse

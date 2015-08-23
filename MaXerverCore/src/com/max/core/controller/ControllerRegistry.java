@@ -116,13 +116,22 @@ public class ControllerRegistry {
 				}
 
 				if (method.isAnnotationPresent(FileResponse.class)) {
-					String filePath = (String) method.invoke(instances.get(entry.getKey()), params.toArray());
-					ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-					URL uri = classLoader.getResource(filePath);
-					if (uri == null) {
-						System.err.println("File " + filePath + " was not found.");
-					} else {
-						File file = new File(uri.getPath());
+					
+					File file= null;
+					if ( String.class.isAssignableFrom(method.getReturnType()) ){
+						String filePath = (String) method.invoke(instances.get(entry.getKey()), params.toArray());
+						ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+						URL uri = classLoader.getResource(filePath);
+						if (uri == null) {
+							file = new File(filePath);
+						}
+						else{
+							file = new File(uri.getPath());
+						}
+					}else if ( File.class.isAssignableFrom(method.getReturnType())){
+						file = (File) method.invoke(instances.get(entry.getKey()), params.toArray());
+					}
+					if (file != null) {
 						try {
 							response.sendFile(file);
 						} catch (IOException e) {
