@@ -44,30 +44,22 @@ public class RequestPathMatcher {
 	public static void main(String[] args) {
 		Map<String, String> result = RequestPathMatcher.match("/hello/${terst12}/${something_weird}/hehe",
 				"/hello/123123123123/sameer_is_great/hehe");
-		if (result != null)
-			System.out.println(result.toString());
-		else
-			System.out.println("not match");
+		if (result != null) System.out.println(result.toString());
+		else System.out.println("not match");
 		Map<String, String> result1 = RequestPathMatcher.match("/hello/${terst12}/${something_weird}/hehe",
 				"/hello/123123123123/sameer_is_great/hehew");
-		if (result1 != null)
-			System.out.println(result1.toString());
-		else
-			System.out.println("not match");
+		if (result1 != null) System.out.println(result1.toString());
+		else System.out.println("not match");
 
 		Map<String, String> result2 = RequestPathMatcher.match("/hello/123123123123/sameer_is_great/hehe",
 				"/hello/123123123123/sameer_is_great/hehe");
-		if (result2 != null)
-			System.out.println(result2.toString());
-		else
-			System.out.println("not match");
+		if (result2 != null) System.out.println(result2.toString());
+		else System.out.println("not match");
 
 		Map<String, String> result3 = RequestPathMatcher.match("/hello/123123123123/sameer_is_great/hehe",
 				"/hello/123123123123/sameer_is_great/hehew");
-		if (result3 != null)
-			System.out.println(result3.toString());
-		else
-			System.out.println("not match");
+		if (result3 != null) System.out.println(result3.toString());
+		else System.out.println("not match");
 	}
 
 }

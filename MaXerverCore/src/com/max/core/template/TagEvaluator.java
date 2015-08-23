@@ -13,8 +13,7 @@ public class TagEvaluator {
 		while (content.contains("<" + INCLUDE_TAG)) {
 			int index = content.indexOf("<" + INCLUDE_TAG);
 			int fileNameBeginIndex = content.indexOf(FILENAME_TAG, index) + FILENAME_TAG.length() + 2;
-			int fileNameEndIndex = content.indexOf(content.substring(fileNameBeginIndex - 1, fileNameBeginIndex),
-					fileNameBeginIndex);
+			int fileNameEndIndex = content.indexOf(content.substring(fileNameBeginIndex - 1, fileNameBeginIndex), fileNameBeginIndex);
 
 			String fileName = content.substring(fileNameBeginIndex, fileNameEndIndex);
 			String fileContent = readContent(fileName);
@@ -25,7 +24,7 @@ public class TagEvaluator {
 
 	private static String readContent(String fileSimpleName) {
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		URL uri = classLoader.getResource( "views/"+ fileSimpleName + ".html");
+		URL uri = classLoader.getResource("views/" + fileSimpleName + ".html");
 		if (uri == null) {
 			System.err.println("File " + fileSimpleName + ".html was not found.");
 			return "";

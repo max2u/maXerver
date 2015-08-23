@@ -13,22 +13,21 @@ import com.max.core.http.HttpRequest;
 public class HomeController {
 
 	@RequestMapping("/")
-	public String processRequest(@RequestParam("hello") Long hello,  HttpRequest request, Context context){
+	public String processRequest(@RequestParam("hello") Long hello, HttpRequest request, Context context) {
 		context.addModelAttributes("title", "sameer is awesome!");
 		return "index";
 	}
-    
-    @RequestMapping("/resource/${file_path}")
-    @FileResponse
-    public String getFile(@PathVariable("file_path") String filePath){
-        return "resources/" + filePath ;
-    }
-    
 
-    @RequestMapping("/favicon.ico")
-    @FileResponse
-    public String getFavicon(){
-        return "resources/favicon.ico";
-    }
-    
+	@RequestMapping("/resource/${file_path}")
+	@FileResponse
+	public String getFile(@PathVariable("file_path") String filePath) {
+		return "resources/" + filePath;
+	}
+
+	@RequestMapping("/favicon.ico")
+	@FileResponse
+	public String getFavicon() {
+		return "resources/favicon.ico";
+	}
+
 }

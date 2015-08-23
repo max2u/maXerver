@@ -142,11 +142,10 @@ public class ScriptEvaluator {
 				}
 			} else {
 				result = content;
-				System.out.println("--------------- unhandled collection type "
-						+ (collObj != null ? collObj.getClass() : "null") + " --------------- ");
+				System.out.println("--------------- unhandled collection type " + (collObj != null ? collObj.getClass() : "null")
+						+ " --------------- ");
 			}
-			script = script.replace(script.substring(index, contentEndIndex + ("</" + LOOP_TAG + ">").length()),
-					result);
+			script = script.replace(script.substring(index, contentEndIndex + ("</" + LOOP_TAG + ">").length()), result);
 		}
 		return script;
 	}
@@ -221,8 +220,7 @@ public class ScriptEvaluator {
 					try {
 						Field field = obj.getClass().getDeclaredField(fieldName);
 						obj = field.get(obj);
-					} catch (NoSuchFieldException | SecurityException | IllegalArgumentException
-							| IllegalAccessException e1) {
+					} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e1) {
 						e1.printStackTrace();
 					}
 				}

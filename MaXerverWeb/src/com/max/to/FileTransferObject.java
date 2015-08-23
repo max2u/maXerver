@@ -6,26 +6,26 @@ import com.max.core.utils.FileInfo;
 import com.max.core.utils.FileInfo.FileType;
 
 public class FileTransferObject {
-	
-	private String path= "";
-	private String parent= "";
-	private FileType type= FileType.FILE;
-	private String ext= "";
-	private boolean file= true;
-	
+
+	private String path = "";
+	private String parent = "";
+	private FileType type = FileType.FILE;
+	private String ext = "";
+	private boolean file = true;
+
 	public FileTransferObject(File file) {
-		this.path=file.getAbsolutePath();
-		this.parent= file.getParent();
-		this.file= file.isFile();
-		if (this.file){
-			if (file.getName().lastIndexOf(".")>0){
-				this.ext= file.getName().substring(file.getName().lastIndexOf("."));
+		this.path = file.getAbsolutePath();
+		this.parent = file.getParent();
+		this.file = file.isFile();
+		if (this.file) {
+			if (file.getName().lastIndexOf(".") > 0) {
+				this.ext = file.getName().substring(file.getName().lastIndexOf("."));
 			}
-			if(this.ext != null &&  !this.ext.trim().isEmpty()){
-				this.type= FileInfo.getType(this.ext);
+			if (this.ext != null && !this.ext.trim().isEmpty()) {
+				this.type = FileInfo.getType(this.ext);
 			}
-		}else{
-			this.type= FileType.DIRECTORY;
+		} else {
+			this.type = FileType.DIRECTORY;
 		}
 	}
 

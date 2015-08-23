@@ -3,7 +3,7 @@ package com.max.core.utils;
 public class ObjectMapper {
 
 	public static Object getFromString(String value, Class<?> type) {
-		if ( value == null ){
+		if (value == null) {
 			return null;
 		}
 		if (String.class.isAssignableFrom(type)) {

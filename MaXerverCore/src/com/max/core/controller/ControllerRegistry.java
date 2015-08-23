@@ -68,8 +68,7 @@ public class ControllerRegistry {
 	 * @throws InvocationTargetException,
 	 *             IllegalAccessException
 	 */
-	public static void process(HttpRequest request, HttpResponse response)
-			throws InvocationTargetException, IllegalAccessException {
+	public static void process(HttpRequest request, HttpResponse response) throws InvocationTargetException, IllegalAccessException {
 		// TODO handle request and url parameters
 		boolean processed = false;
 		for (Entry<Class<?>, Map<Method, String>> entry : registry.entrySet()) {
@@ -116,19 +115,18 @@ public class ControllerRegistry {
 				}
 
 				if (method.isAnnotationPresent(FileResponse.class)) {
-					
-					File file= null;
-					if ( String.class.isAssignableFrom(method.getReturnType()) ){
+
+					File file = null;
+					if (String.class.isAssignableFrom(method.getReturnType())) {
 						String filePath = (String) method.invoke(instances.get(entry.getKey()), params.toArray());
 						ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 						URL uri = classLoader.getResource(filePath);
 						if (uri == null) {
 							file = new File(filePath);
-						}
-						else{
+						} else {
 							file = new File(uri.getPath());
 						}
-					}else if ( File.class.isAssignableFrom(method.getReturnType())){
+					} else if (File.class.isAssignableFrom(method.getReturnType())) {
 						file = (File) method.invoke(instances.get(entry.getKey()), params.toArray());
 					}
 					if (file != null) {
